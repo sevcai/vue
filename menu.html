@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+    }
+    html,body{
+        height: 100%;
+    }
+    .box{
+        width: 20%;
+        background: #666;
+    }
+    .one{
+        width: 100%;
+        height: auto;
+    }
+    .one li{
+        width: 100%;
+        padding-left: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .one ul{
+        width: 100%;
+     }
+</style>
+<body>
+<div class="view">
+    <slide></slide>
+</div>
+</body>
+<script>
+    var obj=[{show:false,"name":"一级分类","children":[{"name":"一级子分类"},{"name":"一级子分类"}]},{show:false,"name":"二级分类","children":[{"name":"二级子分类"},{"name":"二级子分类"}]},{show:false,"name":"三级分类","children":[{"name":"三级子分类"},{"name":"三级子分类"}]},{show:false,"name":"四级分类","children":[{"name":"四级子分类"},{"name":"四级子分类"}]}];
+    Vue.component("slide",{
+        template:"<div class='box'><ul class='one' v-for='item in obj' ><li v-if='!item.children'>{{item.name}}</li><li v-else @click='item.show=!item.show'>{{item.name}}<ul v-for='items in item.children' v-if='item.sh" +
+        "ow'><li>{{items.name}}</li></ul></li></ul></div>",
+        data:function(){
+            return{
+                obj:obj,
+                show:false
+            }
+        }
+    })
+    new Vue({
+        el:'.view',
+    })
+</script>
+</html>
